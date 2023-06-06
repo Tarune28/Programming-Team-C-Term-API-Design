@@ -5,13 +5,13 @@
 
 // IMPORTS --------------------------------------------------------------- //
 
-// Cross origin resource sharing enabled
-const cors = require('cors');
-app.use(cors());
-
 // Creating an express server
 const express = require('express')
 const app = express()
+
+// Cross origin resource sharing enabled
+const cors = require('cors');
+app.use(cors());
 
 // Running on port 8080
 const port = 8080
