@@ -1,9 +1,24 @@
 
-// API Club @2023 //
+// Mass Academy API Club 2023 //
 // By: Tarun Eswar & Omar El Nesr //
 
+// Term: C Term
+// Description: Creating the API for the Mass Academy Brickyard Beat Newspaper
 
-// IMPORTS --------------------------------------------------------------- //
+// Schedule
+// Week 1: Learn about databases and decide on the best design
+// Week 2: Learn about Firebase implement OAuth, JSON Web Tokens, cover imports
+// Week 3: Learn about get requests, brainstorm implement them
+// Week 4: Continuation of week 3
+// Week 5: Learn about post requests, brainstorm, implement them
+// Week 6: Continuation of week 5
+// Week 7: Documenetation on Postman and why it's useful
+// Week 8: Hosting our API on a server
+
+
+// ----- BOILER TEMPLATE ----- //
+
+// IMPORTS //
 
 // Creating an express server
 const express = require('express')
@@ -24,9 +39,7 @@ app.use(bodyParser.json());
 var mysql = require('mysql');
 var admin = require("firebase-admin");
 
-
-// INITIATE DATABASE CONNECTION --------------------------------------------------------------- //
-
+// INITIATE DATABASE CONNECTION //
 var con = mysql.createPool({
   host: "",
   user: "",
@@ -35,8 +48,7 @@ var con = mysql.createPool({
   port: ""
 });
 
-
-// INITIATE FIREBASE CONNECTION --------------------------------------------------------------- //
+// INITIATE FIREBASE CONNECTION //
 try {
   admin.initializeApp({
   });
@@ -45,9 +57,7 @@ catch {
   console.log("Firebase already initialized")
 }
 
-
-// JWT CHECK --------------------------------------------------------------- //
-
+// JWT CHECK //
 async function appCheckVerification(req, res, next) {
     const token = req.header('Authorization');
     if (!token) {
@@ -65,6 +75,7 @@ async function appCheckVerification(req, res, next) {
   }
  
 
+// BASE ENDPOINT //
 app.get('/', (req, res) => {
   res.send('Test Server Activated')
 });
@@ -80,15 +91,19 @@ app.get("/get", [appCheckVerification], (req, res) => {
   }
 });
 
+
 // POST REQUESTS //
 
 // sample post request
-app.post("/manualEntry", [appCheckVerification], async (req, res) => {
+app.post("/post", [appCheckVerification], async (req, res) => {
     try {
     } catch(err) {
       console.log(err)
     }
 });
+
+
+// LISTENING ON PORT //
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`)
